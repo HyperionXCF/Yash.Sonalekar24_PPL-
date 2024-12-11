@@ -1,0 +1,58 @@
+# Simple To-Do List Program
+
+# Initialize an empty list to store tasks
+tasks = []
+
+def show_menu():
+    print("\nTo-Do List Menu:")
+    print("1. Add a Task")
+    print("2. View All Tasks")
+    print("3. Remove a Task")
+    print("4. Exit")
+
+def add_task():
+    task = input("Enter the task: ")
+    tasks.append(task)
+    print(f"Task '{task}' added to the list.")
+
+def view_tasks():
+    if len(tasks) == 0:
+        print("Your to-do list is empty.")
+    else:
+        print("\nYour Tasks:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
+
+def remove_task():
+    if len(tasks) == 0:
+        print("No tasks to remove.")
+    else:
+        view_tasks()
+        try:
+            task_number = int(input("Enter the number of the task to remove: "))
+            if 1 <= task_number <= len(tasks):
+                removed_task = tasks.pop(task_number - 1)
+                print(f"Task '{removed_task}' removed from the list.")
+            else:
+                print("Invalid task number.")
+        except ValueError:
+            print("Please enter a valid number.")
+
+def main():
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-4): ")
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            view_tasks()
+        elif choice == "3":
+            remove_task()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please choose again.")
+
+# Run the program
+main()
